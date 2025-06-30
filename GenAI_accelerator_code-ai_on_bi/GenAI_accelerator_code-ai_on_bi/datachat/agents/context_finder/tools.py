@@ -62,8 +62,8 @@ llm = get_llm()
 
 llm1 = AzureChatOpenAI(
             api_version="2023-03-15-preview",
-            api_key="ede9daf6a5424bc181860e02ed75b492",
-            azure_endpoint="https://sanjoy-llm-accelerator.openai.azure.com/",
+            api_key="",
+            azure_endpoint="",
             azure_deployment="gpt-4o-mini",
             model="gpt-4o-mini",
             openai_api_type="azure",
