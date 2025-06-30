@@ -1,0 +1,52 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-added-large-files
+    -   id: check-ast
+    -   id: check-builtin-literals
+    -   id: pretty-format-json
+        exclude: ".vscode"
+        args:
+          - "--autofix"
+        exclude_types:
+          - jupyter
+    -   id: check-merge-conflict
+    -   id: check-symlinks
+    -   id: debug-statements
+    -   id: destroyed-symlinks
+    -   id: detect-private-key
+    -   id: mixed-line-ending
+    -   id: no-commit-to-branch
+        args:
+          - "--branch"
+          - "main"
+          - "--branch"
+          - "chat2data"
+-   repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+    -   id: isort
+        name: isort (python)
+        args:
+          - "--profile"
+          - "black"
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.2
+    hooks:
+    -   id: pyupgrade
+-   repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+    -   id: black
+-   repo: local
+    hooks:
+    -   id: export-requirements
+        name: Sync Poetry with requirements.txt
+        entry: sh -c 'poetry export --without-hashes --format=requirements.txt > requirements.txt'
+        language: system
+        pass_filenames: false
+        always_run: true

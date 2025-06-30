@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: VectorDB File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/populate_vector_db.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/datachat/creds.env",
+        },
+        {
+            "name": "Python Debugger: App",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/streamlit",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/datachat/creds.env",
+            "args": [
+                "run",
+                "app.py"
+            ]
+        }
+    ]
+}

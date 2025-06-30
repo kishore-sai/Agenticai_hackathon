@@ -1,0 +1,327 @@
+[
+    {
+        "table_name": "departments",
+        "description": "Information about various departments within the healthcare facility.",
+        "joins": [
+            "departments.department_id → emergency_metrics.department_id, departments.department_id → inpatient_metrics.ward_id, departments.department_id → outpatient_metrics.clinic_id, departments.department_id → icu_metrics.icu_id, departments.department_id → hospital_administration_metrics.hospital_id, departments.department_id → patient_safety_metrics.department_id, departments.hospital_id → hospitals.hospital_id"
+        ],
+        "primary_key": [
+            "department_id"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "emergency_metrics",
+                "column_name": "department_id",
+                "description": "Metrics related to the emergency department operations and performance."
+            },
+            {
+                "table_name": "inpatient_metrics",
+                "column_name": "ward_id",
+                "description": "Metrics related to inpatient ward operations and performance."
+            },
+            {
+                "table_name": "outpatient_metrics",
+                "column_name": "clinic_id",
+                "description": "Metrics related to outpatient department operations and performance."
+            },
+            {
+                "table_name": "icu_metrics",
+                "column_name": "icu_id",
+                "description": "Metrics related to intensive care unit operations and performance."
+            },
+            {
+                "table_name": "hospital_administration_metrics",
+                "column_name": "hospital_id",
+                "description": "Metrics related to hospital administration operations and performance."
+            },
+            {
+                "table_name": "patient_safety_metrics",
+                "column_name": "department_id",
+                "description": "Metrics related to patient safety and quality of care."
+            },
+            {
+                "table_name": "hospitals",
+                "column_name": "hospital_id",
+                "description": "Information about different hospitals and their facilities."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    },
+    {
+        "table_name": "hospitals",
+        "description": "Information about different hospitals and their facilities.",
+        "joins": [
+            "hospitals.hospital_id → financial_metrics.hospital_id, hospitals.hospital_id → patient_experience_metrics.hospital_id, hospitals.hospital_id → departments.hospital_id"
+        ],
+        "primary_key": [
+            "hospital_id"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "financial_metrics",
+                "column_name": "hospital_id",
+                "description": "Metrics related to financial operations and billing processes."
+            },
+            {
+                "table_name": "patient_experience_metrics",
+                "column_name": "hospital_id",
+                "description": "Metrics related to patient experience and satisfaction."
+            },
+            {
+                "table_name": "departments",
+                "column_name": "hospital_id",
+                "description": "Information about various departments within the healthcare facility."
+            },
+            {
+                "table_name": "staff",
+                "column_name": "hospital_id",
+                "description": "Details about the healthcare staff including roles and responsibilities."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    },
+    {
+        "table_name": "staff",
+        "description": "Details about the healthcare staff including roles and responsibilities.",
+        "joins": [
+            "staff.hospital_id → hospitals.hospital_id"
+        ],
+        "primary_key": [
+            "staff_id"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "hospitals",
+                "column_name": "hospital_id",
+                "description": "Information about different hospitals and their facilities."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    },
+    {
+        "table_name": "emergency_metrics",
+        "description": "Metrics related to the emergency department operations and performance.",
+        "joins": [
+            "departments.department_id → emergency_metrics.department_id"
+        ],
+        "primary_key": [
+            "department_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "departments",
+                "column_name": "department_id",
+                "description": "Information about various departments within the healthcare facility."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "Yes"
+    },
+    {
+        "table_name": "inpatient_metrics",
+        "description": "Metrics related to inpatient ward operations and performance.",
+        "joins": [
+            "departments.department_id → inpatient_metrics.ward_id"
+        ],
+        "primary_key": [
+            "ward_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "departments",
+                "column_name": "ward_id",
+                "description": "Information about various departments within the healthcare facility."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    },
+    {
+        "table_name": "outpatient_metrics",
+        "description": "Metrics related to outpatient department operations and performance.",
+        "joins": [
+            "departments.department_id → outpatient_metrics.clinic_id"
+        ],
+        "primary_key": [
+            "clinic_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "departments",
+                "column_name": "clinic_id",
+                "description": "Information about various departments within the healthcare facility."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "Yes"
+    },
+    {
+        "table_name": "surgery_metrics",
+        "description": "Metrics related to surgery department operations and performance.",
+        "joins": [],
+        "primary_key": [
+            "surgery_type_id",
+            "date"
+        ],
+        "foreign_key": [],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "Yes"
+    },
+    {
+        "table_name": "radiology_metrics",
+        "description": "Metrics related to radiology department operations and performance.",
+        "joins": [],
+        "primary_key": [
+            "radiology_lab_id",
+            "date"
+        ],
+        "foreign_key": [],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "Yes"
+    },
+    {
+        "table_name": "lab_metrics",
+        "description": "Metrics related to laboratory department operations and performance.",
+        "joins": [],
+        "primary_key": [
+            "lab_id",
+            "date"
+        ],
+        "foreign_key": [],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "No",
+        "non_clinical_staff_allowed": "Yes"
+    },
+    {
+        "table_name": "pharmacy_metrics",
+        "description": "Metrics related to pharmacy department operations and performance.",
+        "joins": [],
+        "primary_key": [
+            "pharmacy_id",
+            "date"
+        ],
+        "foreign_key": [],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    },
+    {
+        "table_name": "icu_metrics",
+        "description": "Metrics related to intensive care unit operations and performance.",
+        "joins": [
+            "departments.department_id → icu_metrics.icu_id"
+        ],
+        "primary_key": [
+            "icu_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "departments",
+                "column_name": "icu_id",
+                "description": "Information about various departments within the healthcare facility."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    },
+    {
+        "table_name": "hospital_administration_metrics",
+        "description": "Metrics related to hospital administration operations and performance.",
+        "joins": [
+            "departments.department_id → hospital_administration_metrics.hospital_id"
+        ],
+        "primary_key": [
+            "hospital_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "departments",
+                "column_name": "hospital_id",
+                "description": "Information about various departments within the healthcare facility."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    },
+    {
+        "table_name": "patient_safety_metrics",
+        "description": "Metrics related to patient safety and quality of care.",
+        "joins": [
+            "departments.department_id → patient_safety_metrics.department_id"
+        ],
+        "primary_key": [
+            "department_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "departments",
+                "column_name": "department_id",
+                "description": "Information about various departments within the healthcare facility."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "Yes"
+    },
+    {
+        "table_name": "financial_metrics",
+        "description": "Metrics related to financial operations and billing processes.",
+        "joins": [
+            "hospitals.hospital_id → financial_metrics.hospital_id"
+        ],
+        "primary_key": [
+            "hospital_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "hospitals",
+                "column_name": "hospital_id",
+                "description": "Information about different hospitals and their facilities."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "No",
+        "non_clinical_staff_allowed": "Yes"
+    },
+    {
+        "table_name": "patient_experience_metrics",
+        "description": "Metrics related to patient experience and satisfaction.",
+        "joins": [
+            "hospitals.hospital_id → patient_experience_metrics.hospital_id"
+        ],
+        "primary_key": [
+            "hospital_id",
+            "date"
+        ],
+        "foreign_key": [
+            {
+                "table_name": "hospitals",
+                "column_name": "hospital_id",
+                "description": "Information about different hospitals and their facilities."
+            }
+        ],
+        "managers_allowed": "Yes",
+        "administrative_staff_allowed": "Yes",
+        "non_clinical_staff_allowed": "No"
+    }
+]
